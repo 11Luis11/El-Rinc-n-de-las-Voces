@@ -137,3 +137,73 @@ if ('IntersectionObserver' in window && statEls.length) {
 } else {
   statEls.forEach(animateStat);
 }
+
+/* ---------------------------------------------------------------------- *
+ * 5) Animación al hacer scroll: revela imagen + contenido a la vez        *
+ *    (mismo grupo => misma sección => aparecen sincronizados y en         *
+ *    cascada, para que se vean ordenados / simétricos)                    *
+ * ---------------------------------------------------------------------- */
+const revealGroups = document.querySelectorAll('.case, .sources');
+
+revealGroups.forEach((group) => {
+  const items = Array.from(
+    group.querySelectorAll(':scope > .reveal, :scope > * > .reveal, :scope .reveal-left, :scope .reveal-right, :scope .reveal-scale, :scope .ledger .reveal')
+  );
+  // quita duplicados conservando el orden en el que aparecen en el DOM
+  const unique = Array.from(new Set(items));
+  unique.forEach((el, i) => {
+    el.style.transitionDelay = `${Math.min(i, 6) * 90}ms`;
+  });
+});
+
+if ('IntersectionObserver' in window) {
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  const revealObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }
+  );
+  revealEls.forEach((el) => revealObserver.observe(el));
+} else {
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+    .forEach((el) => el.classList.add('is-visible'));
+}
+
+/* ---------------------------------------------------------------------- *
+ * 6) Animación que sigue el cursor: leve inclinación 3D sobre las fotos   *
+ * ---------------------------------------------------------------------- */
+if (!prefersReducedMotion && window.matchMedia('(hover: hover)').matches) {
+  const tiltTargets = document.querySelectorAll('.evidence-frame, .case__figure');
+
+  tiltTargets.forEach((el) => {
+    let frame = null;
+    el.style.transformStyle = 'preserve-3d';
+
+    el.addEventListener('mouseenter', () => { el.style.transition = 'none'; });
+
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const rotateX = (-y * 6).toFixed(2);
+        const rotateY = (x * 6).toFixed(2);
+        el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+    });
+
+    el.addEventListener('mouseleave', () => {
+      if (frame) cancelAnimationFrame(frame);
+      el.style.transition = 'transform .4s ease';
+      el.style.transform = '';
+    });
+  });
+}

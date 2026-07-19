@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Rincón de las Voces — La trampa del primer empleo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ CABECERA ============ -->
+<header class="masthead">
+  <a class="masthead__link" href="#acerca">Acerca de</a>
+  <h1 class="masthead__name">El Rincón de las Voces</h1>
+  <div class="masthead__social">
+    <a href="#" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M14 9h3V5.6c-.5-.07-2.2-.22-3.3-.22-3.3 0-5 2-5 5.7V14H5.5v4h3.2v8h4.2v-8h3.4l.5-4h-3.9v-2.5c0-1.2.3-2 2.1-2z"/></svg>
+    </a>
+    <a href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1"/></svg>
+    </a>
+    <a href="#" aria-label="Twitter / X">
+      <svg viewBox="0 0 24 24"><path d="M4 4l7.5 9.3L4.3 20h2l6-6.6 4.8 6.6H21l-8-9.9L19.4 4h-2L12 10 7.4 4z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- ============ RIEL DE EXPEDIENTES (nav pegajosa / signature element) ============ -->
+<nav class="dossier-rail" aria-label="Índice de la investigación">
+  <ol>
+    <li><a href="#exp-01" class="rail__tab" data-tab>Caso Nicolini</a></li>
+    <li><a href="#exp-02" class="rail__tab" data-tab>Infancias invisibles</a></li>
+    <li><a href="#exp-03" class="rail__tab" data-tab>Perú ante la OIT</a></li>
+    <li><a href="#fuentes" class="rail__tab" data-tab>Fuentes</a></li>
+  </ol>
+</nav>
+
+<main>
+
+  <!-- ============ TÍTULO / HERO ============ -->
+  <section class="hero" id="acerca">
+    <div class="hero__inner">
+      <p class="hero__eyebrow">Investigación — trabajo y precariedad juvenil</p>
+      <h2 class="hero__title">La trampa del primer empleo: cómo las empresas y talleres explotan a los jóvenes</h2>
+    </div>
+  </section>
+
+  <!-- ============ EXPEDIENTE 01: CASO NICOLINI ============ -->
+  <section class="case" id="exp-01">
+    <div class="case__media">
+      <figure class="evidence-frame" data-video-frame>
+        <img src="media/hero-nicolini.jpg" alt="Vista aérea de la galería Nicolini en Las Malvinas" class="evidence-frame__img" data-fallback-label="media/hero-nicolini.jpg">
+        <span class="evidence-frame__source">Fuente: Andina</span>
+        <span class="evidence-frame__badge">LR</span>
+
+        <button class="evidence-frame__play" type="button" data-play-video aria-label="Reproducir video del caso Nicolini">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+
+        <video class="evidence-frame__video" data-video controls preload="none"
+               poster="media/hero-nicolini.jpg">
+          <source src="media/video-nicolini.mp4" type="video/mp4">
+          Tu navegador no soporta la reproducción de video.
+        </video>
+
+        <figcaption class="evidence-frame__caption">Caso Nicolini: tragedia que hizo historia contra la esclavitud laboral</figcaption>
+      </figure>
+    </div>
+
+    <div class="case__notes">
+      <blockquote class="stamp-note stamp-note--lead">
+        A casi una década de la tragedia de las Malvinas, las condiciones de precariedad se han vuelto estructurales
+      </blockquote>
+      <div class="stamp-note">
+        <p>En junio de 2017, el incendio de la galería Nicolini en Las Malvinas conmovió al país. Dentro de contenedores metálicos cerrados con candados, Jovi Herrera y Jorge Luis Huamán pasaron sus últimos minutos de vida enviando mensajes de auxilio. Hoy, la pregunta sigue doliendo. ¿Realmente cambió algo?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPEDIENTE 02: INFANCIAS INVISIBLES ============ -->
+  <section class="case case--stacked" id="exp-02">
+    <h3 class="case__title">Más de 700 mil infancias invisibles</h3>
+
+    <div class="case__columns">
+      <div class="case__col">
+        <p>La tragedia de las Malvinas fue solo la punta de un iceberg. Según los datos oficiales de INEI y la ENAHO, hoy el mercado laboral arrastra a miles de niños y adolescentes atrapados en la precariedad. Más preocupante es que ha encendido las alarmas que aquellos que deben afirmar el aula con el empleo, o peor aún, los que se ven obligados a dedicarse exclusivamente a trabajar.</p>
+
+        <blockquote class="marginalia">
+          <p>“Hay una Estrategia Nacional para la Prevención y Erradicación del Trabajo Infantil en Perú… pero cifras del INEI demuestran que su implementación debe reforzarse”</p>
+          <cite>Matilde Cobeña, Adjunta para la Niñez y la Adolescencia de la Defensoría del Pueblo</cite>
+        </blockquote>
+      </div>
+
+      <figure class="case__figure">
+        <img src="media/infancias-invisibles.jpg" alt="Adolescentes trabajando en labores agrícolas" data-fallback-label="media/infancias-invisibles.jpg">
+      </figure>
+
+      <div class="case__col">
+        <p>El impacto se mide directamente en las aulas vacías. Las estadísticas del INEI muestran un deterioro progresivo:</p>
+
+        <div class="stat-pair">
+          <div class="stat" data-stat="7.7" data-suffix="%">
+            <span class="stat__from">2017</span>
+            <span class="stat__num">0%</span>
+            <span class="stat__label">de adolescentes entre 14 y 17 años solo trabajaba</span>
+          </div>
+          <span class="stat-pair__arrow">→</span>
+          <div class="stat" data-stat="9.8" data-suffix="%">
+            <span class="stat__from">2019</span>
+            <span class="stat__num">0%</span>
+            <span class="stat__label">escaló preocupantemente</span>
+          </div>
+        </div>
+
+        <p>El golpe pega más fuerte en quienes intentan sostener ambas actividades a la vez:</p>
+
+        <div class="stat-pair">
+          <div class="stat" data-stat="19.2" data-suffix="%">
+            <span class="stat__from">2017</span>
+            <span class="stat__num">0%</span>
+            <span class="stat__label">estudiaba y trabajaba</span>
+          </div>
+          <span class="stat-pair__arrow">→</span>
+          <div class="stat" data-stat="23.9" data-suffix="%">
+            <span class="stat__from">1.er trim. 2019</span>
+            <span class="stat__num">0%</span>
+            <span class="stat__label">ya alcanzaba esta cifra</span>
+          </div>
+        </div>
+
+        <p>La necesidad económica despoja a los jóvenes de sus oportunidades de desarrollo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPEDIENTE 03: OIT ============ -->
+  <section class="case case--reverse" id="exp-03">
+    <figure class="case__figure case__figure--tall">
+      <span class="case__figure-frame">
+        <img src="media/oit-conferencia.jpg" alt="Conferencia Internacional del Trabajo en Ginebra sobre trabajo infantil" data-fallback-label="media/oit-conferencia.jpg">
+      </span>
+      <figcaption class="case__figure-caption">114ª Conferencia Internacional del Trabajo — Ginebra</figcaption>
+    </figure>
+
+    <div class="case__notes case__notes--wide">
+      <h3 class="case__title case__title--accent">Perú presentó ante la OIT nuevas medidas para prevenir y sancionar el trabajo infantil</h3>
+
+      <p>Durante la 114ª Reunión de la Conferencia Internacional del Trabajo en Ginebra, el viceministro de Trabajo, Tomás Flores Noriega, reafirmó el compromiso del Perú de erradicar el trabajo infantil de niños, niñas y adolescentes mediante el fortalecimiento de políticas públicas y un enfoque territorial articulado con la sociedad civil y sectores productivos. Aunque destacó una reducción sostenida en la tasa de trabajo infantil en los últimos años, reconoció que persisten retos estructurales, especialmente en las cadenas de suministro, por lo que urgió a intensificar la fiscalización y los mecanismos de restitución de derechos.</p>
+
+      <p>Asimismo, detalló los principales logros y herramientas implementadas por el país al año 2026.</p>
+
+      <ul class="ledger">
+        <li><span class="ledger__mark" aria-hidden="true">✓</span><span class="ledger__text">Se creó un <strong>grupo especializado de inspectores de trabajo</strong> encargado de ejecutar operativos de inteligencia multisectoriales para detectar y sancionar la explotación de menores.</span></li>
+        <li><span class="ledger__mark" aria-hidden="true">✓</span><span class="ledger__text">Se aprobó un <strong>protocolo intersectorial obligatorio</strong> que unifica la actuación del Estado para identificar, atender y restituir los derechos de los menores vulnerables.</span></li>
+        <li><span class="ledger__mark" aria-hidden="true">✓</span><span class="ledger__text">Se lanzó el <strong>proyecto PAÍS</strong> en cooperación Sur‑Sur con Brasil, la OIT y el PNUD, enfocado específicamente en prevenir el trabajo infantil y forzoso en la Amazonía peruana.</span></li>
+        <li><span class="ledger__mark" aria-hidden="true">✓</span><span class="ledger__text">Un total de <strong>46 gobiernos locales</strong> implementaron el modelo municipal contra el trabajo infantil, integrando el enfoque de prevención dentro de las labores de fiscalización de las autoridades locales.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ FUENTES ============ -->
+  <section class="sources" id="fuentes">
+    <h3 class="sources__title">Fuentes</h3>
+    <ol class="sources__list">
+      <li>Agraria.pe. (s.f.). <em>[Fotografía de niños trabajando]</em> [Fotografía]. Agraria.pe. <a href="https://agraria.pe/imgs/a/lx/al-menos-100-millones-de-ninos-trabajan-8490.jpg">agraria.pe/imgs/a/lx/al-menos-100-millones-de-ninos-trabajan-8490.jpg</a></li>
+      <li>La República – LR+. (17 de enero de 2026). <em>Caso Nicolini: justicia confirma condena de más de 30 años por esclavitud laboral #LR</em> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=o_B-MGJhYmc">youtube.com/watch?v=o_B-MGJhYmc</a></li>
+      <li>El Peruano. (10 de junio de 2026). <em>Perú presentó ante la OIT nuevas medidas para prevenir y sancionar el trabajo infantil.</em> <a href="https://elperuano.pe/noticia/297684-peru-presento-ante-la-oit-nuevas-medidas-para-prevenir-y-sancionar-el-trabajo-infantil">elperuano.pe/noticia/297684-peru-presento-ante-la-oit-nuevas-medidas-para-prevenir-y-sancionar-el-trabajo-infantil</a></li>
+    </ol>
+  </section>
+
+</main>
+
+<!-- ============ PIE ============ -->
+<footer class="colophon">
+  <svg class="colophon__wave" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,30 C 200,60 400,0 600,30 C 800,60 1000,0 1200,30 L1200,60 L0,60 Z"/>
+  </svg>
+  <div class="colophon__inner">
+    <a class="colophon__mail" href="mailto:elricondelasvoces@gmail.com">elricondelasvoces@gmail.com</a>
+    <div class="colophon__meta">
+      <span class="colophon__date">18 de julio del 2026</span>
+      <div class="colophon__social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V5.6c-.5-.07-2.2-.22-3.3-.22-3.3 0-5 2-5 5.7V14H5.5v4h3.2v8h4.2v-8h3.4l.5-4h-3.9v-2.5c0-1.2.3-2 2.1-2z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1"/></svg></a>
+        <a href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24"><path d="M4 4l7.5 9.3L4.3 20h2l6-6.6 4.8 6.6H21l-8-9.9L19.4 4h-2L12 10 7.4 4z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

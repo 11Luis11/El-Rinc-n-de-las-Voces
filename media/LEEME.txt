@@ -1,0 +1,37 @@
+CÓMO SUBIR TUS FOTOS Y VIDEO
+=============================
+
+Coloca tus archivos dentro de ESTA carpeta ("media") usando exactamente
+estos nombres. La página ya está lista para leerlos automáticamente:
+
+1. hero-nicolini.jpg
+   → La foto de la galería Nicolini (Expediente 01).
+     ESTA MISMA IMAGEN funciona como miniatura del video: se ve
+     primero como foto, y al darle clic al botón de play se convierte
+     en la portada (poster) del reproductor. No necesitas dos archivos,
+     con uno solo alcanza.
+
+2. video-nicolini.mp4
+   → El video que se reproduce DENTRO de la misma página al hacer
+     clic sobre la miniatura (no se abre YouTube, se reproduce ahí mismo).
+     Formato recomendado: .mp4 (H.264), peso liviano para que cargue rápido.
+
+3. infancias-invisibles.jpg
+   → Foto de adolescentes en labores agrícolas (Expediente 02).
+
+4. oit-conferencia.jpg
+   → Foto de la conferencia de la OIT en Ginebra (Expediente 03).
+
+NOTAS
+-----
+- Respeta mayúsculas/minúsculas y guiones exactamente como están escritos.
+- Si un archivo todavía no existe, la página lo indica sola con un aviso
+  de "sube aquí" en su lugar — no se rompe el diseño.
+- Si ves el mensaje "sube aquí" aunque ya copiaste el archivo, revisa que
+  el nombre sea idéntico (sin mayúsculas de más, sin espacios) y que esté
+  dentro de la carpeta "media", junto a este archivo.
+- Puedes reemplazar los archivos cuantas veces quieras; solo mantén el
+  mismo nombre y vuelve a abrir (o recarga) la página en el navegador.
+- Si quieres usar otros nombres de archivo, abre index.html con el Bloc
+  de notas o cualquier editor, busca (Ctrl+F) la ruta "media/..." y
+  reemplázala por el nombre que prefieras.

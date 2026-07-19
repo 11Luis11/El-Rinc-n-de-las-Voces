@@ -1,0 +1,562 @@
+/* ==========================================================================
+   EL RINCÓN DE LAS VOCES — sistema de diseño "expediente"
+   Tokens
+   -------------------------------------------------------------------------
+   --cover   fondo tipo carátula de expediente (casi negro, cálido)
+   --paper   páginas del documento (crema, no blanco puro)
+   --ink     texto principal
+   --stamp   rojo de sello / urgencia — usar con moderación
+   --kraft   pestaña de carpeta (mostaza/tierra) — acento secundario
+   --muted   pies de foto, metadatos
+   ========================================================================== */
+
+:root{
+  --cover:  #15161a;
+  --cover-2:#1d1f24;
+  --paper:  #f4eee1;
+  --paper-2:#eee6d4;
+  --ink:    #211d18;
+  --stamp:  #c73a1d;
+  --stamp-ink: #7c2412;
+  --kraft:  #a06a2e;
+  --muted:  #8a8071;
+  --line:   rgba(33,29,24,0.14);
+  --line-dark: rgba(244,238,225,0.14);
+
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans:  "Inter", system-ui, sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, monospace;
+
+  --rail-w: 168px;
+  --edge: 20px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *, *::before, *::after{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+
+body{
+  margin:0;
+  background:var(--cover);
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;}
+img{max-width:100%; display:block;}
+
+/* ---------------------------------------------------------------------- */
+/* MASTHEAD                                                                */
+/* ---------------------------------------------------------------------- */
+.masthead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px var(--edge);
+  background:var(--cover);
+  border-bottom:1px solid var(--line-dark);
+  position:sticky;
+  top:0;
+  z-index:40;
+}
+.masthead__link{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.04em;
+  color:#cfc9bd;
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .2s;
+}
+.masthead__link:hover{border-color:var(--stamp);}
+.masthead__name{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--stamp);
+  text-align:center;
+  flex:1;
+}
+.masthead__social{display:flex; gap:14px;}
+.masthead__social a{color:#cfc9bd; display:flex;}
+.masthead__social svg{width:16px; height:16px; fill:currentColor;}
+.masthead__social a:hover{color:var(--stamp);}
+
+/* ---------------------------------------------------------------------- */
+/* RIEL DE EXPEDIENTES — elemento distintivo (pestañas de carpeta)         */
+/* ---------------------------------------------------------------------- */
+.dossier-rail{
+  position:sticky;
+  top:57px;
+  z-index:30;
+  background:var(--cover-2);
+  border-bottom:1px solid var(--line-dark);
+}
+.dossier-rail ol{
+  list-style:none;
+  display:flex;
+  margin:0;
+  padding:0 var(--edge);
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.dossier-rail ol::-webkit-scrollbar{display:none;}
+.rail__tab{
+  display:flex;
+  align-items:center;
+  padding:14px 18px;
+  text-decoration:none;
+  font-size:13px;
+  color:#cfc9bd;
+  border-bottom:3px solid transparent;
+  white-space:nowrap;
+  transition:border-color .2s, background .2s, color .2s;
+}
+.rail__tab:hover{background:rgba(255,255,255,.03); color:#fff;}
+.rail__tab.is-active{border-color:var(--stamp); color:#fff; font-weight:600;}
+
+/* ---------------------------------------------------------------------- */
+/* HERO                                                                    */
+/* ---------------------------------------------------------------------- */
+.hero{
+  background:var(--cover);
+  color:var(--paper);
+  padding:88px 0 64px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:-60% -20%;
+  background:repeating-linear-gradient(
+    115deg,
+    rgba(199,58,29,.06) 0px,
+    rgba(199,58,29,.06) 1.5px,
+    transparent 1.5px,
+    transparent 46px
+  );
+  animation:driftGrain 16s linear infinite;
+  pointer-events:none;
+}
+.hero__inner{
+  max-width:900px;
+  margin:0 auto;
+  padding:0 var(--edge);
+  position:relative;
+  z-index:1;
+}
+
+@keyframes driftGrain{
+  from{ transform:translate(0,0); }
+  to{ transform:translate(46px,46px); }
+}
+.hero__eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--stamp);
+  margin:0 0 18px;
+}
+.hero__eyebrow::before{content:"◆ "; color:var(--kraft);}
+.hero__title{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(2rem, 5vw, 3.4rem);
+  line-height:1.12;
+  margin:0;
+  letter-spacing:-.01em;
+}
+
+/* ---------------------------------------------------------------------- */
+/* CASE SECTIONS — páginas del expediente                                  */
+/* ---------------------------------------------------------------------- */
+main{background:var(--paper);}
+
+.case{
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px var(--edge);
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:40px;
+  align-items:start;
+  border-top:1px solid var(--line);
+}
+.case__title{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height:1.15;
+  margin:0 0 12px;
+  grid-column:1 / -1;
+}
+.case__title--accent{color:var(--stamp-ink);}
+
+/* Marco "evidencia" con foto + video ------------------------------------ */
+.evidence-frame{
+  position:relative;
+  margin:0;
+  border:1px solid var(--line);
+  background:var(--cover);
+  overflow:hidden;
+  border-radius:2px;
+}
+.evidence-frame__img,
+.evidence-frame__video{
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  display:block;
+  color:transparent; /* oculta el texto alternativo si la imagen no carga */
+  background:var(--cover-2);
+}
+.evidence-frame__video{display:none; background:#000;}
+.evidence-frame.is-playing .evidence-frame__img,
+.evidence-frame.is-playing .evidence-frame__play,
+.evidence-frame.is-playing .evidence-frame__badge,
+.evidence-frame.is-playing .evidence-frame__source{display:none;}
+.evidence-frame.is-playing .evidence-frame__video{display:block;}
+
+.evidence-frame__source{
+  position:absolute; left:10px; top:10px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:#eee;
+  background:rgba(0,0,0,.45);
+  padding:3px 8px;
+  letter-spacing:.03em;
+}
+.evidence-frame__badge{
+  position:absolute; right:12px; top:10px;
+  width:34px; height:34px;
+  border-radius:50%;
+  background:var(--stamp);
+  color:#fff;
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:12px;
+  display:flex; align-items:center; justify-content:center;
+  transform:rotate(-8deg);
+  box-shadow:0 2px 6px rgba(0,0,0,.35);
+  animation:stampPulse 2.6s ease-in-out infinite;
+}
+@keyframes stampPulse{
+  0%,100%{ box-shadow:0 2px 6px rgba(0,0,0,.35), 0 0 0 0 rgba(199,58,29,.55); }
+  50%{ box-shadow:0 2px 6px rgba(0,0,0,.35), 0 0 0 7px rgba(199,58,29,0); }
+}
+.evidence-frame__play{
+  position:absolute; inset:0;
+  margin:auto;
+  width:64px; height:64px;
+  border-radius:50%;
+  border:none;
+  background:rgba(21,22,26,.72);
+  color:#f4eee1;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition:transform .18s ease, background .18s ease;
+}
+.evidence-frame__play svg{width:24px; height:24px; fill:currentColor; margin-left:3px;}
+.evidence-frame__play:hover{transform:scale(1.08); background:var(--stamp);}
+.evidence-frame__caption{
+  font-family:var(--mono);
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--paper-2);
+  background:var(--stamp-ink);
+  padding:10px 14px;
+  letter-spacing:.01em;
+}
+
+/* Notas tipo sello / nota adhesiva --------------------------------------- */
+.case__notes{display:flex; flex-direction:column; gap:16px;}
+.stamp-note{
+  margin:0;
+  padding:20px 20px 20px 22px;
+  border-left:3px solid var(--stamp);
+  background:var(--paper-2);
+  font-size:14.5px;
+  line-height:1.6;
+}
+.stamp-note--lead{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:1.25rem;
+  line-height:1.35;
+  font-style:normal;
+  color:var(--stamp-ink);
+  background:transparent;
+  padding-left:20px;
+}
+.stamp-note p{margin:0; color:#3a352d;}
+
+/* Placeholder de imagen (antes de subir archivo) ------------------------- */
+.media-missing{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px;
+  aspect-ratio:16/10;
+  background:
+    repeating-linear-gradient(45deg, rgba(244,238,225,.05) 0 10px, transparent 10px 20px),
+    var(--cover-2);
+  border:1px dashed rgba(244,238,225,.35);
+  color:#cfc9bd;
+  text-align:center;
+  padding:20px;
+}
+.media-missing svg{width:28px; height:28px; opacity:.6;}
+.media-missing__label{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--kraft);
+}
+.media-missing__hint{font-size:12px; color:#918a7c; max-width:220px;}
+
+/* ---------------------------------------------------------------------- */
+/* EXPEDIENTE 02 — columnas + estadísticas                                 */
+/* ---------------------------------------------------------------------- */
+.case--stacked{display:block;}
+.case__columns{
+  display:grid;
+  grid-template-columns:1fr 0.9fr 1fr;
+  gap:32px;
+  align-items:start;
+}
+.case__col p{font-size:15px; line-height:1.7; margin:0 0 16px;}
+.case__figure{margin:0;}
+.case__figure img{border:1px solid var(--line);}
+.case__figure--tall img{aspect-ratio:3/4; object-fit:cover;}
+
+.marginalia{
+  margin:22px 0 0;
+  padding:22px 24px 20px;
+  border:1px solid var(--line);
+  border-left:3px solid var(--kraft);
+  background:#fbf8f0;
+  position:relative;
+}
+.marginalia::before{
+  content:"“";
+  position:absolute;
+  top:2px; left:14px;
+  font-family:var(--serif);
+  font-size:2.6rem;
+  line-height:1;
+  color:var(--kraft);
+  opacity:.45;
+}
+.marginalia p{
+  margin:0 0 12px;
+  padding-left:20px;
+  font-family:var(--serif);
+  font-weight:600;
+  font-style:normal;
+  font-size:1.05rem;
+  line-height:1.55;
+  color:#312c25;
+}
+.marginalia cite{
+  display:block;
+  padding-left:20px;
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:12px;
+  line-height:1.5;
+  color:var(--kraft);
+}
+
+.stat-pair{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:18px 0 22px;
+}
+.stat{
+  flex:1;
+  text-align:center;
+  padding:14px 8px;
+  background:var(--cover);
+  color:var(--paper);
+  position:relative;
+}
+.stat__from{
+  display:block;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.08em;
+  color:var(--kraft);
+  margin-bottom:4px;
+}
+.stat__num{
+  display:block;
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:1.9rem;
+  color:var(--stamp);
+  line-height:1;
+}
+.stat__label{
+  display:block;
+  font-size:10.5px;
+  line-height:1.35;
+  color:#cfc9bd;
+  margin-top:6px;
+}
+.stat-pair__arrow{color:var(--muted); font-size:18px;}
+
+/* ---------------------------------------------------------------------- */
+/* EXPEDIENTE 03 — OIT (imagen + lista tipo libro mayor)                   */
+/* ---------------------------------------------------------------------- */
+.case--reverse{grid-template-columns:0.85fr 1.3fr;}
+.case--reverse .case__figure{align-self:start;}
+.case__figure-frame{
+  display:block;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+.case--reverse .case__figure img{
+  width:100%;
+  aspect-ratio:4/3.6;
+  object-fit:cover;
+  object-position:center 32%;
+  height:auto;
+}
+.case__figure-caption{
+  margin-top:8px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:.02em;
+}
+.case__notes--wide p{font-size:15px; line-height:1.75; margin:0 0 16px; color:#312c25;}
+
+.ledger{list-style:none; margin:18px 0 0; padding:0; display:flex; flex-direction:column; gap:14px;}
+.ledger li{
+  display:flex; gap:12px;
+  padding:14px 16px;
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  font-size:14px;
+  line-height:1.6;
+}
+.ledger__mark{
+  flex:0 0 auto;
+  color:#fff;
+  background:var(--kraft);
+  width:20px; height:20px;
+  border-radius:50%;
+  font-size:11px;
+  display:flex; align-items:center; justify-content:center;
+  margin-top:2px;
+}
+.ledger__text{
+  flex:1 1 auto;
+  min-width:0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* FUENTES                                                                 */
+/* ---------------------------------------------------------------------- */
+.sources{
+  max-width:1180px;
+  margin:0 auto;
+  padding:48px var(--edge) 64px;
+  border-top:1px solid var(--line);
+}
+.sources__title{
+  font-family:var(--mono);
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--kraft);
+  margin:0 0 18px;
+}
+.sources__list{
+  margin:0; padding:0 0 0 20px;
+  display:flex; flex-direction:column; gap:12px;
+  font-size:13px; line-height:1.6; color:#463f34;
+}
+.sources__list a{color:var(--stamp-ink); word-break:break-word;}
+
+/* ---------------------------------------------------------------------- */
+/* PIE                                                                     */
+/* ---------------------------------------------------------------------- */
+.colophon{
+  position:relative;
+  background:var(--cover);
+  color:var(--paper);
+  padding:76px var(--edge) 40px;
+  overflow:hidden;
+}
+.colophon::before{
+  content:"";
+  position:absolute;
+  inset:-60% -20%;
+  background:repeating-linear-gradient(
+    115deg,
+    rgba(199,58,29,.06) 0px,
+    rgba(199,58,29,.06) 1.5px,
+    transparent 1.5px,
+    transparent 46px
+  );
+  animation:driftGrain 16s linear infinite;
+  pointer-events:none;
+}
+.colophon__inner{
+  position:relative;
+  z-index:1;
+}
+.colophon__wave{
+  position:absolute; top:-1px; left:0; width:100%; height:40px;
+  transform:translateY(-100%);
+}
+.colophon__wave path{fill:var(--paper);}
+.colophon__inner{
+  max-width:1180px; margin:0 auto;
+  display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:24px;
+}
+.colophon__mail{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(1.4rem, 4vw, 2.1rem);
+  text-decoration:none;
+  color:var(--paper);
+  border-bottom:2px solid var(--stamp);
+}
+.colophon__meta{display:flex; flex-direction:column; align-items:flex-end; gap:10px;}
+.colophon__date{font-family:var(--mono); font-size:12px; color:#b9b2a3;}
+.colophon__social{display:flex; gap:14px;}
+.colophon__social a{color:#cfc9bd; display:flex;}
+.colophon__social svg{width:16px; height:16px; fill:currentColor;}
+.colophon__social a:hover{color:var(--stamp);}
+
+/* ---------------------------------------------------------------------- */
+/* RESPONSIVE                                                              */
+/* ---------------------------------------------------------------------- */
+@media (max-width:900px){
+  .case, .case--reverse{grid-template-columns:1fr;}
+  .case__columns{grid-template-columns:1fr;}
+  .case__figure--tall img{aspect-ratio:16/10;}
+}
+@media (max-width:560px){
+  .masthead{padding:14px 16px;}
+  .masthead__name{font-size:12px; letter-spacing:.1em;}
+  .hero, .case, .sources, .colophon__inner{padding-left:16px; padding-right:16px;}
+  .colophon__inner{align-items:flex-start;}
+  .colophon__meta{align-items:flex-start;}
+}
+
+/* Foco visible accesible -------------------------------------------------*/
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--stamp);
+  outline-offset:2px;
+}

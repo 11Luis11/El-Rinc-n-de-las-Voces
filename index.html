@@ -166,11 +166,20 @@
   <section class="interviews" id="entrevistas">
     <div class="interviews__inner">
       <div class="interviews__media">
-        <video class="interviews__video" controls preload="none">
-          <source src="media/entrevistas-uap.mp4" type="video/mp4">
-          Tu navegador no soporta la reproducción de video.
-        </video>
-        <span class="interviews__source">Fuente propia</span>
+        <figure class="interviews__frame" data-video-frame>
+          <img src="media/miniatura-entrevistas-uap.png" alt="Miniatura del video de entrevistas en la Universidad Autónoma del Perú" class="interviews__thumb" data-fallback-label="media/miniatura-entrevistas-uap.png">
+          <span class="interviews__source">Fuente propia</span>
+
+          <button class="interviews__play" type="button" data-play-video aria-label="Reproducir video de entrevistas">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+
+          <video class="interviews__video" data-video controls preload="none"
+                 poster="media/miniatura-entrevistas-uap.png">
+            <source src="media/entrevistas-uap.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </figure>
       </div>
 
       <div class="interviews__notes">

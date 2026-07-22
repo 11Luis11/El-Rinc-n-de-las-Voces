@@ -489,14 +489,41 @@ main{background:var(--paper);}
   position:relative;
   background:#000;
 }
+.interviews__frame{
+  position:relative;
+  margin:0;
+  overflow:hidden;
+}
+.interviews__thumb,
 .interviews__video{
   width:100%;
   height:100%;
   aspect-ratio:16/10;
   object-fit:cover;
   display:block;
+  color:transparent;
   background:#000;
 }
+.interviews__video{display:none;}
+.interviews__frame.is-playing .interviews__thumb,
+.interviews__frame.is-playing .interviews__play,
+.interviews__frame.is-playing .interviews__source{display:none;}
+.interviews__frame.is-playing .interviews__video{display:block;}
+
+.interviews__play{
+  position:absolute; inset:0;
+  margin:auto;
+  width:64px; height:64px;
+  border-radius:50%;
+  border:none;
+  background:rgba(17,17,17,.78);
+  color:var(--uap-white);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition:transform .18s ease, background .18s ease;
+}
+.interviews__play svg{width:24px; height:24px; fill:currentColor; margin-left:3px;}
+.interviews__play:hover{transform:scale(1.08); background:var(--uap-orange); color:var(--uap-black);}
 .interviews__source{
   position:absolute; left:10px; bottom:10px;
   font-family:var(--mono);

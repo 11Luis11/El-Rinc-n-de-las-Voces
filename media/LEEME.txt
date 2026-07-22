@@ -35,3 +35,15 @@ NOTAS
 - Si quieres usar otros nombres de archivo, abre index.html con el Bloc
   de notas o cualquier editor, busca (Ctrl+F) la ruta "media/..." y
   reemplázala por el nombre que prefieras.
+
+5. entrevistas-uap.mp4
+   -> El video de las entrevistas a autoridades y jovenes universitarios
+     de la Universidad Autonoma del Peru. Va en la seccion "Entrevistas UAP",
+     casi al final de la pagina, justo antes de "Fuentes".
+     Formato: .mp4 (H.264), livianito para que cargue rapido.
+
+6. logo-uap.png
+   -> El logo NUEVO de la Universidad Autonoma del Peru. Se muestra al
+     lado del video, junto al texto "Entrevistas a autoridades y jovenes
+     universitarios de la Universidad Autonoma del Peru".
+     Recomendado: PNG con fondo transparente, ancho maximo ~500px.

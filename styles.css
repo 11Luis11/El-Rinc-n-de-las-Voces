@@ -570,6 +570,44 @@ main{background:var(--paper);}
 }
 
 /* ---------------------------------------------------------------------- */
+/* MICRO-ANIMACIONES AL PASAR EL CURSOR                                    */
+/* ---------------------------------------------------------------------- */
+.stamp-note,
+.marginalia,
+.stat,
+.ledger li,
+.case__figure img,
+.case__figure-frame,
+.interviews__inner,
+.sources__list li{
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.stamp-note:hover,
+.marginalia:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 24px rgba(33,29,24,.14);
+}
+.stat:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 10px 22px rgba(0,0,0,.35);
+}
+.ledger li:hover{
+  transform:translateX(4px);
+  box-shadow:0 8px 18px rgba(33,29,24,.12);
+}
+.case__figure img:hover,
+.case__figure-frame:hover{
+  transform:scale(1.02);
+}
+.interviews__inner:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 28px rgba(0,0,0,.35);
+}
+.sources__list li:hover{
+  transform:translateX(4px);
+}
+
+/* ---------------------------------------------------------------------- */
 /* FUENTES                                                                 */
 /* ---------------------------------------------------------------------- */
 .sources{

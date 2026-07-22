@@ -103,6 +103,9 @@ function animateStat(el) {
   const numEl = el.querySelector('.stat__num');
   if (!numEl) return;
 
+  // cancela cualquier animación anterior en este mismo elemento
+  if (el._statAnimId) cancelAnimationFrame(el._statAnimId);
+
   if (prefersReducedMotion) {
     numEl.textContent = `${target}${suffix}`;
     return;
@@ -116,18 +119,26 @@ function animateStat(el) {
     const eased = 1 - Math.pow(1 - progress, 3);
     const value = (target * eased).toFixed(1);
     numEl.textContent = `${value}${suffix}`;
-    if (progress < 1) requestAnimationFrame(tick);
+    if (progress < 1) el._statAnimId = requestAnimationFrame(tick);
   }
-  requestAnimationFrame(tick);
+  el._statAnimId = requestAnimationFrame(tick);
+}
+
+function resetStat(el) {
+  const numEl = el.querySelector('.stat__num');
+  if (!numEl) return;
+  if (el._statAnimId) cancelAnimationFrame(el._statAnimId);
+  numEl.textContent = `0${el.getAttribute('data-suffix') || ''}`;
 }
 
 if ('IntersectionObserver' in window && statEls.length) {
   const statObserver = new IntersectionObserver(
-    (entries, obs) => {
+    (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           animateStat(entry.target);
-          obs.unobserve(entry.target);
+        } else {
+          resetStat(entry.target);
         }
       });
     },

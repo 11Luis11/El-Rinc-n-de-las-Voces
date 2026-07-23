@@ -360,6 +360,11 @@ main{background:var(--paper);}
 }
 .case__col p{font-size:15px; line-height:1.7; margin:0 0 16px;}
 .case__figure{margin:0;}
+.case__columns .case__figure{
+  position:sticky;
+  top:110px;
+  align-self:start;
+}
 .case__figure img{border:1px solid var(--line);}
 .case__figure--tall img{aspect-ratio:3/4; object-fit:cover;}
 
@@ -444,7 +449,11 @@ main{background:var(--paper);}
 /* EXPEDIENTE 03 — OIT (imagen + lista tipo libro mayor)                   */
 /* ---------------------------------------------------------------------- */
 .case--reverse{grid-template-columns:0.85fr 1.3fr;}
-.case--reverse .case__figure{align-self:start;}
+.case--reverse .case__figure{
+  align-self:start;
+  position:sticky;
+  top:110px;
+}
 .case__figure-frame{
   display:block;
   overflow:hidden;
@@ -886,6 +895,11 @@ main{background:var(--paper);}
   .case, .case--reverse, .case--closing{grid-template-columns:1fr;}
   .case__columns{grid-template-columns:1fr;}
   .case__figure--tall img{aspect-ratio:16/10;}
+  .case--reverse .case__figure,
+  .case__columns .case__figure{
+    position:static;
+    top:auto;
+  }
 }
 @media (max-width:560px){
   .masthead{padding:14px 16px;}

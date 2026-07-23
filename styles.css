@@ -720,65 +720,49 @@ main{background:var(--paper);}
 
 /* aviso destacado arriba de la imagen de cierre */
 .closing-banner{
-  position:relative;
   grid-column:1 / -1;
   display:flex;
   align-items:center;
-  gap:22px;
-  background:linear-gradient(155deg, var(--cover) 0%, var(--cover-2) 100%);
-  color:#f4eee1;
-  border-radius:14px;
-  padding:26px 30px;
-  overflow:hidden;
-  box-shadow:0 16px 40px rgba(21,22,26,0.32), inset 0 1px 0 rgba(244,238,225,0.06);
-}
-.closing-banner::before{
-  content:"";
-  position:absolute;
-  inset:0 auto 0 0;
-  width:5px;
-  background:linear-gradient(180deg, var(--kraft), var(--stamp));
+  gap:20px;
+  background:#111112;
+  color:#ffffff;
+  border-radius:16px;
+  padding:24px 28px;
+  margin-bottom:32px;
+  box-shadow:0 12px 28px rgba(0,0,0,0.35);
 }
 .closing-banner__icon{
-  position:relative;
   flex:0 0 auto;
   display:flex;
   align-items:center;
   justify-content:center;
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  background:rgba(160,106,46,0.16);
-  color:var(--kraft);
-}
-.closing-banner__icon::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  border:1.5px solid var(--kraft);
-  animation:closing-banner-ring 2.6s ease-out infinite;
+  color:#f0b23c;
 }
 .closing-banner__icon svg{
-  width:26px;
-  height:26px;
+  width:46px;
+  height:46px;
   animation:closing-banner-shake 3.6s ease-in-out infinite;
+}
+.closing-banner__divider{
+  flex:0 0 auto;
+  width:1px;
+  align-self:stretch;
+  background:rgba(255,255,255,0.2);
 }
 .closing-banner__text{
   margin:0;
-  font-family:var(--serif);
-  font-size:clamp(1.02rem, 1.6vw, 1.2rem);
-  line-height:1.6;
-  letter-spacing:.1px;
+  font-family:var(--sans);
+  font-weight:500;
+  font-size:clamp(1rem, 1.7vw, 1.18rem);
+  line-height:1.55;
+  color:#ffffff;
 }
 .closing-banner__text strong{
-  color:#f0b866;
-  font-weight:700;
+  font-weight:800;
+  color:#ffffff;
 }
-@keyframes closing-banner-ring{
-  0%{ transform:scale(1); opacity:.9; }
-  80%{ transform:scale(1.55); opacity:0; }
-  100%{ transform:scale(1.55); opacity:0; }
+.closing-banner__text .closing-banner__accent{
+  color:#f0b23c;
 }
 @keyframes closing-banner-shake{
   0%, 85%, 100%{ transform:rotate(0deg); }
@@ -805,10 +789,10 @@ main{background:var(--paper);}
     text-align:center;
     padding:24px 20px;
   }
-  .closing-banner::before{
-    inset:0 0 auto 0;
-    width:100%;
-    height:5px;
+  .closing-banner__divider{
+    width:60%;
+    height:1px;
+    align-self:center;
   }
 }
 

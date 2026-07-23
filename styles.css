@@ -701,8 +701,8 @@ main{background:var(--paper);}
 }
 .case__figure--closing img{
   width:100%;
-  aspect-ratio:4/3;
-  object-fit:cover;
+  aspect-ratio:1054/1492;
+  object-fit:contain;
   border:1px solid var(--line);
 }
 .case--closing .stamp-note{

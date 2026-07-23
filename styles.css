@@ -709,6 +709,68 @@ main{background:var(--paper);}
   background:var(--paper-2);
 }
 
+/* aviso destacado arriba de la imagen de cierre */
+.closing-banner{
+  grid-column:1 / -1;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  background:var(--cover);
+  color:#f4eee1;
+  border-radius:10px;
+  padding:22px 26px;
+  box-shadow:0 10px 30px rgba(21,22,26,0.25);
+}
+.closing-banner__icon{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(160,106,46,0.18);
+  color:var(--kraft);
+  animation:closing-banner-pulse 2.4s ease-in-out infinite;
+}
+.closing-banner__icon svg{
+  width:24px;
+  height:24px;
+}
+.closing-banner__text{
+  margin:0;
+  font-family:var(--serif);
+  font-size:clamp(1rem, 1.6vw, 1.15rem);
+  line-height:1.55;
+}
+.closing-banner__text strong{
+  color:var(--kraft);
+  font-weight:700;
+}
+@keyframes closing-banner-pulse{
+  0%, 100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(160,106,46,0.35); }
+  50%{ transform:scale(1.08); box-shadow:0 0 0 8px rgba(160,106,46,0); }
+}
+/* el banner entra con el mismo fade/slide que el resto de la sección, un poco antes que la imagen */
+[data-reveal] .closing-banner{
+  transition:opacity .8s ease, transform .8s ease;
+}
+[data-reveal]:not(.is-visible) .closing-banner{
+  opacity:0;
+  transform:translateY(20px);
+}
+[data-reveal].is-visible .closing-banner{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (max-width:640px){
+  .closing-banner{
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+  }
+}
+
 /* ---------------------------------------------------------------------- */
 /* FUENTES                                                                 */
 /* ---------------------------------------------------------------------- */

@@ -115,6 +115,7 @@ img{max-width:100%; display:block;}
 }
 .dossier-rail ol::-webkit-scrollbar{display:none;}
 .rail__tab{
+  position:relative;
   display:flex;
   align-items:center;
   padding:14px 18px;
@@ -123,10 +124,22 @@ img{max-width:100%; display:block;}
   color:#cfc9bd;
   border-bottom:3px solid transparent;
   white-space:nowrap;
-  transition:border-color .2s, background .2s, color .2s;
+  transition:border-color .25s ease, background .25s ease, color .25s ease;
+}
+.rail__tab::after{
+  content:"";
+  position:absolute;
+  left:18px; right:18px; bottom:-3px;
+  height:3px;
+  background:var(--stamp);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s cubic-bezier(.22,.9,.32,1);
 }
 .rail__tab:hover{background:rgba(255,255,255,.03); color:#fff;}
-.rail__tab.is-active{border-color:var(--stamp); color:#fff; font-weight:600;}
+.rail__tab:hover::after{transform:scaleX(1);}
+.rail__tab.is-active{border-color:transparent; color:#fff; font-weight:600;}
+.rail__tab.is-active::after{transform:scaleX(1);}
 
 /* ---------------------------------------------------------------------- */
 /* HERO                                                                    */
@@ -171,6 +184,8 @@ img{max-width:100%; display:block;}
   text-transform:uppercase;
   color:var(--stamp);
   margin:0 0 18px;
+  opacity:0;
+  animation:fadeInUp .7s ease .1s forwards;
 }
 .hero__eyebrow::before{content:"◆ "; color:var(--kraft);}
 .hero__title{
@@ -180,6 +195,13 @@ img{max-width:100%; display:block;}
   line-height:1.12;
   margin:0;
   letter-spacing:-.01em;
+  opacity:0;
+  animation:fadeInUp .8s ease .28s forwards;
+}
+
+@keyframes fadeInUp{
+  from{ opacity:0; transform:translateY(18px); }
+  to{ opacity:1; transform:translateY(0); }
 }
 
 /* ---------------------------------------------------------------------- */
@@ -570,41 +592,121 @@ main{background:var(--paper);}
 }
 
 /* ---------------------------------------------------------------------- */
+/* APARICIÓN AL HACER SCROLL (data-reveal)                                 */
+/* ---------------------------------------------------------------------- */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+[data-reveal].is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+/* dentro de cada expediente, la foto y las notas entran con un pequeño desfase */
+[data-reveal] .case__media,
+[data-reveal] .case__figure,
+[data-reveal] .case__figure-frame,
+[data-reveal] .interviews__media{
+  transition:opacity .8s ease .05s, transform .8s ease .05s;
+}
+[data-reveal] .case__notes,
+[data-reveal] .interviews__notes{
+  transition:opacity .8s ease .18s, transform .8s ease .18s;
+}
+[data-reveal]:not(.is-visible) .case__media,
+[data-reveal]:not(.is-visible) .case__figure,
+[data-reveal]:not(.is-visible) .case__figure-frame,
+[data-reveal]:not(.is-visible) .interviews__media{
+  opacity:0;
+  transform:translateY(20px);
+}
+[data-reveal]:not(.is-visible) .case__notes,
+[data-reveal]:not(.is-visible) .interviews__notes{
+  opacity:0;
+  transform:translateY(20px);
+}
+[data-reveal].is-visible .case__media,
+[data-reveal].is-visible .case__figure,
+[data-reveal].is-visible .case__figure-frame,
+[data-reveal].is-visible .interviews__media,
+[data-reveal].is-visible .case__notes,
+[data-reveal].is-visible .interviews__notes{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ---------------------------------------------------------------------- */
 /* MICRO-ANIMACIONES AL PASAR EL CURSOR                                    */
 /* ---------------------------------------------------------------------- */
 .stamp-note,
 .marginalia,
 .stat,
 .ledger li,
-.case__figure img,
+.case__figure,
 .case__figure-frame,
 .interviews__inner,
 .sources__list li{
-  transition:transform .25s ease, box-shadow .25s ease;
+  transition:transform .3s cubic-bezier(.22,.9,.32,1), box-shadow .3s cubic-bezier(.22,.9,.32,1);
 }
 .stamp-note:hover,
 .marginalia:hover{
   transform:translateY(-4px);
   box-shadow:0 10px 24px rgba(33,29,24,.14);
 }
+.stat{
+  transition:transform .3s cubic-bezier(.22,.9,.32,1), box-shadow .3s cubic-bezier(.22,.9,.32,1), background .3s ease;
+}
 .stat:hover{
   transform:translateY(-4px) scale(1.03);
   box-shadow:0 10px 22px rgba(0,0,0,.35);
 }
+.ledger li{transition:transform .3s cubic-bezier(.22,.9,.32,1), box-shadow .3s cubic-bezier(.22,.9,.32,1), background .3s ease;}
 .ledger li:hover{
-  transform:translateX(4px);
+  transform:translateX(6px);
   box-shadow:0 8px 18px rgba(33,29,24,.12);
+  background:rgba(160,106,46,.06);
 }
-.case__figure img:hover,
-.case__figure-frame:hover{
-  transform:scale(1.02);
+.case__figure,
+.case__figure-frame{
+  overflow:hidden;
+  border-radius:2px;
+}
+.case__figure img,
+.case__figure-frame img{
+  transition:transform .5s cubic-bezier(.22,.9,.32,1);
+}
+.case__figure:hover img,
+.case__figure-frame:hover img{
+  transform:scale(1.05);
 }
 .interviews__inner:hover{
   transform:translateY(-4px);
   box-shadow:0 14px 28px rgba(0,0,0,.35);
 }
+.interviews__thumb{transition:transform .5s cubic-bezier(.22,.9,.32,1);}
+.interviews__inner:hover .interviews__thumb{transform:scale(1.04);}
+.sources__list li{transition:transform .25s ease, color .25s ease;}
 .sources__list li:hover{
-  transform:translateX(4px);
+  transform:translateX(6px);
+  color:var(--stamp-ink);
+}
+
+/* ---------------------------------------------------------------------- */
+/* CIERRE / REFLEXIÓN FINAL                                                */
+/* ---------------------------------------------------------------------- */
+.case--closing{
+  grid-template-columns:1fr 1.2fr;
+  align-items:center;
+}
+.case__figure--closing img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border:1px solid var(--line);
+}
+.case--closing .stamp-note{
+  background:var(--paper-2);
 }
 
 /* ---------------------------------------------------------------------- */
@@ -687,7 +789,7 @@ main{background:var(--paper);}
 /* RESPONSIVE                                                              */
 /* ---------------------------------------------------------------------- */
 @media (max-width:900px){
-  .case, .case--reverse{grid-template-columns:1fr;}
+  .case, .case--reverse, .case--closing{grid-template-columns:1fr;}
   .case__columns{grid-template-columns:1fr;}
   .case__figure--tall img{aspect-ratio:16/10;}
 }

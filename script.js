@@ -92,7 +92,38 @@ if ('IntersectionObserver' in window && sections.length) {
 }
 
 /* ---------------------------------------------------------------------- *
- * 4) Estadísticas: cuentan hacia arriba cuando entran en pantalla         *
+ * 4) Secciones: aparecen suavemente al hacer scroll hasta ellas           *
+ * ---------------------------------------------------------------------- */
+(function initRevealOnScroll() {
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if (!revealEls.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // si el navegador prefiere menos movimiento, o no soporta IntersectionObserver,
+  // se muestran todas las secciones directamente, sin animación
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+  );
+
+  revealEls.forEach((el) => revealObserver.observe(el));
+})();
+
+/* ---------------------------------------------------------------------- *
+ * 5) Estadísticas: cuentan hacia arriba cuando entran en pantalla         *
  * ---------------------------------------------------------------------- */
 const statEls = document.querySelectorAll('[data-stat]');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

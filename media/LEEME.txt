@@ -47,3 +47,9 @@ NOTAS
      lado del video, junto al texto "Entrevistas a autoridades y jovenes
      universitarios de la Universidad Autonoma del Peru".
      Recomendado: PNG con fondo transparente, ancho maximo ~500px.
+
+7. cierre-investigacion.jpg
+   -> Imagen de la seccion "Reflexion final", justo despues del video de
+     Entrevistas UAP y antes de "Fuentes". Va junto a un texto al costado
+     (edita ese texto directamente en index.html, seccion id="cierre").
+     No se modifica la imagen en si, solo se sube con este nombre exacto.

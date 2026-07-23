@@ -730,6 +730,11 @@ main{background:var(--paper);}
   padding:24px 28px;
   margin-bottom:32px;
   box-shadow:0 12px 28px rgba(0,0,0,0.35);
+  transition:transform .3s cubic-bezier(.22,.9,.32,1), box-shadow .3s cubic-bezier(.22,.9,.32,1);
+}
+.closing-banner:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 34px rgba(0,0,0,.45);
 }
 .closing-banner__icon{
   flex:0 0 auto;
@@ -742,6 +747,11 @@ main{background:var(--paper);}
   width:46px;
   height:46px;
   animation:closing-banner-shake 3.6s ease-in-out infinite;
+  transition:transform .3s cubic-bezier(.22,.9,.32,1);
+}
+.closing-banner:hover .closing-banner__icon svg{
+  animation-play-state:paused;
+  transform:rotate(-10deg) scale(1.12);
 }
 .closing-banner__divider{
   flex:0 0 auto;
